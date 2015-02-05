@@ -38,7 +38,7 @@ void DockExekutor::actionThread()
 	for(int i = 0; i<paramStrings[0].size(); i++)
 		paramStrings[0][i] = tolower(paramStrings[0][i]);
 
-	if(paramStrings[0].compare("undock") == 0 && paramStrings[0].compare("UNDOCK") == 0)
+	if(paramStrings[0].compare("undock") == 0 || paramStrings[0].compare("UNDOCK") == 0)
 	{
 		ROS_INFO("Undocking...");
 		undockAction();
