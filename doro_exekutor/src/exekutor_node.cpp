@@ -7,6 +7,7 @@
 #include <exekutor/move_to_exekutor.h>
 #include <exekutor/move_to_simple_exekutor.h>
 #include <exekutor/pick_up_exekutor.h>
+#include <exekutor/handover_exekutor.h>
 #include <cam_interface/cam_interface.h>
 
 #include<signal.h>
@@ -53,6 +54,7 @@ int main(int argn, char* args[])
 	exekutor::MoveToExekutor MTX("doro", "moveto");
 	exekutor::MoveToSimpleExekutor MTSX("doro", "movetosimple");
 	exekutor::PickUpExekutor PU("doro", "pickup");
+	exekutor::HandoverExekutor HO("doro", "handover");
 	
 	//ROS_INFO("Printing all.");
 	//exekutor::ActionExekutor::printAll();

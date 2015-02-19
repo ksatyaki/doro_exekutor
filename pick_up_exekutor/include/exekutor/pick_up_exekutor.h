@@ -30,6 +30,11 @@ class PickUpExekutor: public ActionExekutor
 	ros::ServiceClient gpg_client_;
 
 	/**
+	 * A plan and move arm client.
+	 */
+	actionlib::SimpleActionClient<doro_manipulation::PlanAndMoveArmAction> pam_client_;
+
+	/**
 	 * The implementation of actionThread().
 	 */
 	virtual void actionThread();

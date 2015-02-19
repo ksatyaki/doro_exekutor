@@ -36,7 +36,8 @@ void PickUpExekutor::stateCallback(PeisTuple* recd_tuple, void* arg)
 }
 
 PickUpExekutor::PickUpExekutor(std::string robot_name, std::string action_name):
-		ActionExekutor(robot_name, action_name)
+		ActionExekutor(robot_name, action_name),
+		pam_client_("plan_and_move_arm", true)
 {
 	gpg_client_ = nh_.serviceClient <doro_manipulation::GenerateGraspPoses> ("generate_grasp_poses", false);
 }
@@ -230,7 +231,7 @@ void PickUpExekutor::actionThread()
 	}
 
 	// LINK 6
-	actionlib::SimpleActionClient<doro_manipulation::PlanAndMoveArmAction> pam_client_ ("plan_and_move_arm", true);
+
 	pam_client_.waitForServer();
 	doro_manipulation::PlanAndMoveArmGoal pam_goal;
 	pam_goal.goal_type = "home";
