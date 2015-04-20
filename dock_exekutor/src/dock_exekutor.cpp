@@ -113,7 +113,7 @@ void DockExekutor::dockAction(const std::string& object_name)
 		return;
 	}
 
-	double reqd_dist = sqrt((obj_position.point.x*obj_position.point.x) + (obj_position.point.y*obj_position.point.y)) - 0.40;
+	double reqd_dist = sqrt((obj_position.point.x*obj_position.point.x) + (obj_position.point.y*obj_position.point.y)) - 0.50;
 	double reqd_pan = atan2(obj_position.point.y, obj_position.point.x) + 0.1;
 
 	simple_service::MoveToSimpleGoal _goal;
