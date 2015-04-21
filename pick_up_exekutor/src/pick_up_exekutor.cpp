@@ -78,6 +78,10 @@ void PickUpExekutor::actionThread()
 	{
 		usleep(500000);
 	}
+
+	peiskmt_setStringTuple("in.doro.look.command", "NULL");
+	peiskmt_setStringTuple("in.doro.look.parameters", "NULL");
+	peiskmt_setStringTuple("out.doro.look.state", "IDLE");
 	peiskmt_unregisterTupleCallback(cHandle);
 
 	sleep(2);
@@ -92,6 +96,10 @@ void PickUpExekutor::actionThread()
 	{
 		usleep(500000);
 	}
+
+	peiskmt_setStringTuple("in.doro.acquire.command", "NULL");
+	peiskmt_setStringTuple("in.doro.acquire.parameters", "NULL");
+	peiskmt_setStringTuple("out.doro.acquire.state", "IDLE");
 	peiskmt_unregisterTupleCallback(cHandle);
 
 	// LINK 3
