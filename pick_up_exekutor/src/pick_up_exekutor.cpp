@@ -80,6 +80,7 @@ void PickUpExekutor::actionThread()
 	}
 	peiskmt_unregisterTupleCallback(cHandle);
 
+	sleep(2);
 	// LINK 2
 	ROS_INFO("Doro-Acquire");
 	our_linker.link("pick_up.acquire.2", "doro.acquire");
