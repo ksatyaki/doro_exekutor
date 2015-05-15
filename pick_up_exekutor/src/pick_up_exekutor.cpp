@@ -61,6 +61,7 @@ void PickUpExekutor::actionThread()
 	our_linker.setTuples("pick_up.acquire.2", "ON", parameter, "IDLE");
 	our_linker.setTuples("pick_up.fiddle.4", "ON", "close", "IDLE");
 	our_linker.setTuples("pick_up.moveithand.5", "ON", "-0.143 1.064 -0.136 0.656 -0.227 0.244 0.678", "IDLE");
+	our_linker.setTuples("pick_up.look.7", "ON", "ahead", "IDLE");
 
 	/**
 	Translation: [-0.143, 1.064, -0.136]
@@ -84,7 +85,6 @@ void PickUpExekutor::actionThread()
 	peiskmt_setStringTuple("out.doro.look.state", "IDLE");
 	peiskmt_unregisterTupleCallback(cHandle);
 
-	sleep(2);
 	// LINK 2
 	ROS_INFO("Doro-Acquire");
 	our_linker.link("pick_up.acquire.2", "doro.acquire");
@@ -144,6 +144,7 @@ void PickUpExekutor::actionThread()
 	ROS_INFO("Moving arm to grasp.");
 
 	bool move_hand_success = false;
+	geometry_msgs::PoseStamped grasp_pose_success;
 	for(int i = 0; i < message.response.grasp_poses.size(); i++)
 	{
 		geometry_msgs::PoseStamped& pregrasp_pose = message.response.pregrasp_poses[i];
@@ -216,6 +217,7 @@ void PickUpExekutor::actionThread()
 				continue;
 		}
 		else
+		  grasp_pose_success = grasp_pose;
 			break;
 	}
 
@@ -239,6 +241,34 @@ void PickUpExekutor::actionThread()
 
 	}
 
+	char ose_param[80];
+	sprintf(ose_param, "%0.4f %0.4f %0.4f %0.4f %0.4f %0.4f %0.4f",
+		grasp_pose_success.pose.position.x,
+		grasp_pose_success.pose.position.y,
+		grasp_pose_success.pose.position.z + 0.03,
+		grasp_pose_success.pose.orientation.x,
+		grasp_pose_success.pose.orientation.y,
+		grasp_pose_success.pose.orientation.z,
+		grasp_pose_success.pose.orientation.w);
+	
+	our_linker.setTuples("pick_up.moveithand.6", "ON", ose_param, "IDLE");
+
+	stateValue = RUNNING;
+        ROS_INFO("Lift Hand");
+	our_linker.link("pick_up.moveithand.6", "doro.moveithand");
+	peiskmt_setStringTuple("out.doro.moveithand.state", "IDLE");
+	cHandle = peiskmt_registerTupleCallback(my_peis_id, "out.doro.moveithand.state", (void *)this, &PickUpExekutor::stateCallback);
+	usleep(100000);
+	while(stateValue != COMPLETED && stateValue != FAILED)
+	{
+		usleep(500000);
+	}
+
+	peiskmt_setStringTuple("in.doro.moveithand.command", "NULL");
+	peiskmt_setStringTuple("in.doro.moveithand.parameters", "NULL");
+	peiskmt_setStringTuple("out.doro.moveithand.state", "IDLE");
+	peiskmt_unregisterTupleCallback(cHandle);
+
 	// LINK 6
 
 	pam_client_.waitForServer();
@@ -254,8 +284,27 @@ void PickUpExekutor::actionThread()
 		return;
 	}
 
+	stateValue = RUNNING;
+        ROS_INFO("Doro-Look");
+	our_linker.link("pick_up.look.7", "doro.look");
+	peiskmt_setStringTuple("out.doro.look.state", "IDLE");
+	cHandle = peiskmt_registerTupleCallback(my_peis_id, "out.doro.look.state", (void *)this, &PickUpExekutor::stateCallback);
+	usleep(100000);
+	while(stateValue != COMPLETED && stateValue != FAILED)
+	{
+		usleep(500000);
+	}
+
+	peiskmt_setStringTuple("in.doro.look.command", "NULL");
+	peiskmt_setStringTuple("in.doro.look.parameters", "NULL");
+	peiskmt_setStringTuple("out.doro.look.state", "IDLE");
+	peiskmt_unregisterTupleCallback(cHandle);
+
+
 	setState(COMPLETED);
 	ROS_INFO("Action succeeded.");
+
+
 }
 
 } /* namespace exekutor */
