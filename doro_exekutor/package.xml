@@ -16,32 +16,11 @@
   <license>GPLv3</license>
 
 
-  <!-- Url tags are optional, but mutiple are allowed, one per tag -->
-  <!-- Optional attribute type can be: website, bugtracker, or repository -->
-  <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/exekutor_executable</url> -->
-
-
-  <!-- Author tags are optional, mutiple are allowed, one per tag -->
-  <!-- Authors do not have to be maintianers, but could be -->
-  <!-- Example: -->
-  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
-
-
-  <!-- The *_depend tags are used to specify dependencies -->
-  <!-- Dependencies can be catkin packages or system dependencies -->
-  <!-- Examples: -->
-  <!-- Use build_depend for packages you need at compile time: -->
-  <!--   <build_depend>message_generation</build_depend> -->
-  <!-- Use buildtool_depend for build tool packages: -->
-  <!--   <buildtool_depend>catkin</buildtool_depend> -->
-  <!-- Use run_depend for packages you need at runtime: -->
-  <!--   <run_depend>message_runtime</run_depend> -->
-  <!-- Use test_depend for packages you need only for testing: -->
-  <!--   <test_depend>gtest</test_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
+
   <build_depend>acquire_exekutor</build_depend>
   <build_depend>action_exekutor</build_depend>
+  <build_depend>handle_exekutor</build_depend>
   <build_depend>look_exekutor</build_depend>
   <build_depend>move_hand_exekutor</build_depend>
   <build_depend>moveit_hand_exekutor</build_depend>
@@ -51,7 +30,8 @@
   <build_depend>tuples_linker</build_depend>
   <build_depend>move_to_exekutor</build_depend>
   <build_depend>fake_exekutor</build_depend>
-  
+
+  <run_depend>handle_exekutor</run_depend>
   <run_depend>move_to_exekutor</run_depend>
   <run_depend>tuples_linker</run_depend>
   <run_depend>cam_interface</run_depend>

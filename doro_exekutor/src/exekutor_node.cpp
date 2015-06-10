@@ -9,6 +9,7 @@
 #include <exekutor/pick_up_exekutor.h>
 #include <exekutor/handover_exekutor.h>
 #include <fake_exekutor.h>
+#include <exekutor/handle_exekutor.h>
 #include <cam_interface/cam_interface.h>
 
 #include<signal.h>
@@ -57,6 +58,7 @@ int main(int argn, char* args[])
 	exekutor::PickUpExekutor PU("doro", "pickup");
 	exekutor::HandoverExekutor HO("doro", "handover");
 	exekutor::FakeExekutor FE("doro", "wait");
+	exekutor::HandleExekutor HX("doro", "handle");
 	
 	//ROS_INFO("Printing all.");
 	//exekutor::ActionExekutor::printAll();
