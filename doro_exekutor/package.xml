@@ -29,6 +29,7 @@
   <build_depend>cam_interface</build_depend>
   <build_depend>tuples_linker</build_depend>
   <build_depend>move_to_exekutor</build_depend>
+  <build_depend>fake_exekutor</build_depend>
 
   <run_depend>handle_exekutor</run_depend>
   <run_depend>move_to_exekutor</run_depend>
@@ -41,6 +42,7 @@
   <run_depend>move_hand_exekutor</run_depend>
   <run_depend>moveit_hand_exekutor</run_depend>
   <run_depend>pick_up_exekutor</run_depend>
+  <run_depend>fake_exekutor</run_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

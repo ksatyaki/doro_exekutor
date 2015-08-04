@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   moveit_hand_exekutor
   pick_up_exekutor
   dock_exekutor
+  fake_exekutor
   handle_exekutor
   tuples_linker
 )
@@ -29,7 +30,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES exekutor_executable
-  CATKIN_DEPENDS acquire_exekutor action_exekutor look_exekutor moveit_hand_exekutor pick_up_exekutor handle_exekutor
+  CATKIN_DEPENDS acquire_exekutor action_exekutor look_exekutor moveit_hand_exekutor pick_up_exekutor fake_exekutor handle_exekutor
 #  DEPENDS system_lib
 )
 
