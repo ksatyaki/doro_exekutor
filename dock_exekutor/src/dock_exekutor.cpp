@@ -76,13 +76,14 @@ void DockExekutor::undockAction()
 		return;
 	}
 
-	_goal.goal_pose.pose.position.x = 0.0;
-	_goal.goal_pose.pose.position.y = 0.0;
-	_goal.goal_pose.pose.orientation.z = undock_goal.pose.orientation.z;
-	_goal.goal_pose.pose.orientation.w = undock_goal.pose.orientation.w;
-	move_to_simple_client_.sendGoal(_goal);
-	ROS_INFO("Final rotate...");
-	move_to_simple_client_.waitForResult();
+	// This part may not be needed. Commented out.
+	// _goal.goal_pose.pose.position.x = 0.0;
+	// _goal.goal_pose.pose.position.y = 0.0;
+	// _goal.goal_pose.pose.orientation.z = undock_goal.pose.orientation.z;
+	// _goal.goal_pose.pose.orientation.w = undock_goal.pose.orientation.w;
+	// move_to_simple_client_.sendGoal(_goal);
+	// ROS_INFO("Final rotate...");
+	// move_to_simple_client_.waitForResult();
 
 	ROS_INFO("Done.");
 	last_operation = UNDOCK;
