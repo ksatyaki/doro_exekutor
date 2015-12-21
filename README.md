@@ -9,6 +9,7 @@ The exekutor components for use on Domestic Robot platform used in Robot-Era:
 |3| MoveitHandExekutor | p.x, p.y, p.z, q.x, q.y, q.z, q.w | Uses Moveit! to plan a motion to the pose specified by position __p__ and quaternion __q__. This pose should be in the 'base_link' frame of the robot.|
 |4| PickUpExekutor | $object_name | Does the following in order: Look($object_name), Acquire($object_name), uses the grasp pose generation to generate a grasp pose and uses MoveitHand to pick up the object.|
 |5| HandleExekutor | NONE | Start the control of doro using the handle. |
-|6| DoroExekutor | - | This package contains the executable that encapsulates all the above functions |
+|6| HandoverExekutor | EXTEND/WAIT | Extend the arm to handover object. Wait and release the grasp, then retract arm.|
+|7| DoroExekutor | - | This package contains the executable that encapsulates all the above functions |
 Licence: GNU Gneral Public License version 3.
 NOTE: All source files are GPLv3 even if they don't mention it.
